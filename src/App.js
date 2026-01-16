@@ -1,23 +1,58 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState, useEffect } from "react";
+import "./App.css";
+import Todo from "./Components/Todo";
+import AddTodo from "./Components/AddTodo";
 
 function App() {
+  const [todos, setTodos] = useState([]);
+
+  // Load from LocalStorage
+  useEffect(() => {
+    const savedTodos = JSON.parse(localStorage.getItem("todos"));
+    if (savedTodos) setTodos(savedTodos);
+  }, []);
+
+  // Save to LocalStorage
+  useEffect(() => {
+    localStorage.setItem("todos", JSON.stringify(todos));
+  }, [todos]);
+
+  const addTodo = (text) => {
+    setTodos([
+      ...todos,
+      {
+        id: Date.now(),
+        text,
+      },
+    ]);
+  };
+
+  const updateTodo = (id, newText) => {
+    setTodos(
+      todos.map((todo) =>
+        todo.id === id ? { ...todo, text: newText } : todo
+      )
+    );
+  };
+
+  const deleteTodo = (id) => {
+    setTodos(todos.filter((todo) => todo.id !== id));
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="app">
+      <h1>Smart Todo</h1>
+
+      <AddTodo addTodo={addTodo} />
+
+      {todos.map((todo) => (
+        <Todo
+          key={todo.id}
+          todo={todo}
+          deleteTodo={deleteTodo}
+          updateTodo={updateTodo}
+        />
+      ))}
     </div>
   );
 }
