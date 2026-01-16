@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/smart-todo/static/css/main.f855e6bc.css",
-    "main.js": "/smart-todo/static/js/main.4261c721.js",
+    "main.css": "/smart-todo/static/css/main.e6c13ad2.css",
+    "main.js": "/smart-todo/static/js/main.90e79057.js",
     "static/js/453.91b3140f.chunk.js": "/smart-todo/static/js/453.91b3140f.chunk.js",
     "index.html": "/smart-todo/index.html",
-    "main.f855e6bc.css.map": "/smart-todo/static/css/main.f855e6bc.css.map",
-    "main.4261c721.js.map": "/smart-todo/static/js/main.4261c721.js.map",
+    "main.e6c13ad2.css.map": "/smart-todo/static/css/main.e6c13ad2.css.map",
+    "main.90e79057.js.map": "/smart-todo/static/js/main.90e79057.js.map",
     "453.91b3140f.chunk.js.map": "/smart-todo/static/js/453.91b3140f.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.f855e6bc.css",
-    "static/js/main.4261c721.js"
+    "static/css/main.e6c13ad2.css",
+    "static/js/main.90e79057.js"
   ]
 }
