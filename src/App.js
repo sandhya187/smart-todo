@@ -1,18 +1,19 @@
 import React, { useState, useEffect } from "react";
-import "./App.css";
-import Todo from "./Components/Todo";
 import AddTodo from "./Components/AddTodo";
+import Todo from "./Components/Todo";
 
 function App() {
   const [todos, setTodos] = useState([]);
 
-  // Load from LocalStorage
+  // load from localStorage
   useEffect(() => {
     const savedTodos = JSON.parse(localStorage.getItem("todos"));
-    if (savedTodos) setTodos(savedTodos);
+    if (savedTodos) {
+      setTodos(savedTodos);
+    }
   }, []);
 
-  // Save to LocalStorage
+  // save to localStorage
   useEffect(() => {
     localStorage.setItem("todos", JSON.stringify(todos));
   }, [todos]);
@@ -20,19 +21,8 @@ function App() {
   const addTodo = (text) => {
     setTodos([
       ...todos,
-      {
-        id: Date.now(),
-        text,
-      },
+      { id: Date.now(), text }
     ]);
-  };
-
-  const updateTodo = (id, newText) => {
-    setTodos(
-      todos.map((todo) =>
-        todo.id === id ? { ...todo, text: newText } : todo
-      )
-    );
   };
 
   const deleteTodo = (id) => {
@@ -40,17 +30,18 @@ function App() {
   };
 
   return (
-    <div className="app">
+    <div style={{ width: "600px", margin: "40px auto" }}>
       <h1>Smart Todo</h1>
 
+      {/* 👇 INPUT */}
       <AddTodo addTodo={addTodo} />
 
+      {/* 👇 LIST */}
       {todos.map((todo) => (
         <Todo
           key={todo.id}
           todo={todo}
           deleteTodo={deleteTodo}
-          updateTodo={updateTodo}
         />
       ))}
     </div>
